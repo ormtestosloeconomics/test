@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        // Load JSON data
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                var trace1 = {
+                    x: data.Year,
+                    y: data.Series1,
+                    fill: 'tonexty',
+                    type: 'scatter',
+                    name: 'Series 1',
+                    line: { color: 'blue' }
+                };
+
+                var trace2 = {
+                    x: data.Year,
+                    y: data.Series2,
+                    fill: 'tonexty',
+                    type: 'scatter',
+                    name: 'Series 2',
+                    line: { color: 'lightblue' }
+                };
+
+                var trace3 = {
+                    x: data.Year,
+                    y: data.Series3,
+                    fill: 'tonexty',
+                    type: 'scatter',
+                    name: 'Series 3',
+                    line: { color: 'cyan' }
+                };
+
+                var layout = {
+                    title: 'Dynamic Stacked Area Chart',
+                    xaxis: { title: 'Year' },
+                    yaxis: { title: 'Value' }
+                };
+
+                Plotly.newPlot('plot', [trace1, trace2, trace3], layout);
+            });
+    </script>
+</body>
+</html>
